@@ -1,6 +1,7 @@
 {
   "name": "interact",
   "commonName": "Plugin Management Tool",
+  "version": "0.0.1",
   "license": "GPL-3",
   "maintainers": [
     {
