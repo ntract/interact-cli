@@ -18,10 +18,6 @@ var npm = module.exports = {
 	os: sys,
 
 	install: function(cwd, packageJSON, dependencies, callback, noAPI) {
-
-		console.log(dependencies);
-		console.log(packageJSON);
-
 		if (packageJSON && packageJSON.dependencies) {
 			var found = true;
 			var installed = packageJSON.dependencies;
@@ -68,6 +64,7 @@ var npm = module.exports = {
 		if (!npm.npm_api || noAPI) {
 			var ret = function (error, stdout, stderr) {
 				if (typeof callback !== "function") return;
+				fs.writeFileSync(path.join(cwd, "package.json"), JSON.stringify(packageJSON, null, "    "));
 				callback(error, stdout, stderr);
 			};
 			var exec = require('child_process').exec;
