@@ -1,7 +1,7 @@
 {
   "name": "interact-cli",
   "commonName": "Plugin Management Tool",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "GPL-3",
   "maintainers": [
     {
@@ -9,5 +9,7 @@
       "email": "oliver.foster@kineo.com"
     }
   ],
-  "bin": "./interact"
+  "bin": {
+  	"interact": "./bin/interact"
+  }
 }
