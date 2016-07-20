@@ -12,7 +12,7 @@ class Project {
 			//running cli.cwd plugins
 			pluginFolder = cli.plugins_path
 			npmFolder = cli.cwd;
-			var sourcePackageJSONPath = path.join(cli.cwd, "app.json");
+			var sourcePackageJSONPath = path.join(cli.cwd, "package.json");
 			var sourcePackageJSON = { dependencies: {} };
 			try {
 				var stat = fs.statSync(sourcePackageJSONPath);

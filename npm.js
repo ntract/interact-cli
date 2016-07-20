@@ -17,11 +17,14 @@ var npm = module.exports = {
 	npm_api: null,
 	os: sys,
 
-	install: function(cwd, bowerJSON, dependencies, callback, noAPI) {
+	install: function(cwd, packageJSON, dependencies, callback, noAPI) {
 
-		if (bowerJSON && bowerJSON.dependencies) {
+		console.log(dependencies);
+		console.log(packageJSON);
+
+		if (packageJSON && packageJSON.dependencies) {
 			var found = true;
-			var installed = bowerJSON.dependencies;
+			var installed = packageJSON.dependencies;
 			for (var k in dependencies) {
 				if (!installed[k]) {
 					found = false;
@@ -38,12 +41,12 @@ var npm = module.exports = {
 				setTimeout(function() {
 					callback(null, "", "");
 				});
-				return bowerJSON;
+				return packageJSON;
 			}
-		} else if (bowerJSON) {
-			bowerJSON.dependencies = {};
+		} else if (packageJSON) {
+			packageJSON.dependencies = {};
 		} else {
-			bowerJSON = {npm:{}};
+			packageJSON = { dependencies:{}};
 		}
 
 		var install = [];
@@ -51,7 +54,7 @@ var npm = module.exports = {
 			var dep = k+"@"+dependencies[k];
 			console.log("Installing",dep+"...");
 			install.push(dep);
-			bowerJSON.dependencies[k] = (!bowerJSON.dependencies[k] || bowerJSON.dependencies[k] === "*") ? dependencies[k] : bowerJSON.dependencies[k];
+			packageJSON.dependencies[k] = (!packageJSON.dependencies[k] || packageJSON.dependencies[k] === "*") ? dependencies[k] : packageJSON.dependencies[k];
 		}
 
 		//replace startup npm with npm api
@@ -97,7 +100,7 @@ var npm = module.exports = {
 			    //https://github.com/eirslett/frontend-maven-plugin/issues/254
 
 			    //force save of dependencies
-			    fs.writeFileSync(path.join(cwd, "package.json"), JSON.stringify(bowerJSON, null, "    "));
+			    fs.writeFileSync(path.join(cwd, "package.json"), JSON.stringify(packageJSON, null, "    "));
 
 
 			    callback(er, data, null);
@@ -111,7 +114,7 @@ var npm = module.exports = {
 
 		}
 
-		return bowerJSON;
+		return packageJSON;
 	}
 
 };
