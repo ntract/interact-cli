@@ -1,7 +1,6 @@
 {
 	"name": "interact-cli",
 	"license": "GPL-3",
-	"compile": true,
 	"dependencies": {
 		"interact-cli-plugins-build": "~0.0",
 		"interact-cli-plugins-compile": "~0.0",
