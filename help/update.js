@@ -1,5 +1,5 @@
 function output() {
-	console.log("The 'update' command updates this cli.");
+	console.log("The 'update' command updates the global cli.");
 	console.log("");
 	console.log("  update                               update the cli plugins");
 	console.log("  help update                          show this help data");
