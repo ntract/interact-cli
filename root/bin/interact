@@ -1,2 +1,0 @@
-#!/usr/bin/env node
-var cli = require('../plugins/interact-cli/index');
