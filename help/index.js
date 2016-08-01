@@ -1,18 +1,19 @@
-events.once("modules:loaded", function() {
-	if (cli.config.commands[0] !== "help") return;
-	if (cli.config.commands[1] !== undefined) return;
-
+commands
+.on(['help', undefined], function(done) {
 	console.log("");
 	console.log("--------------");
 	console.log("ALL HELP PAGES");
 	console.log("--------------");
 	console.log("");
 
-	events.emit("command:handled");
-});
+	done();
+})
+.unhandled(function() {
 
-
-events.once("command:unhandled", function() {
+	if (cli.config.commands.length === 0) {
+		console.log("No command specified.");
+		return;
+	}
 
 	console.log("Command '"+cli.config.commands[0]+"' not recognized");
 

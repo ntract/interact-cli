@@ -1,21 +1,6 @@
-function output() {
-	console.log("The 'update' command updates the global cli.");
-	console.log("");
-	console.log("  update                               update the cli plugins");
-	console.log("  help update                          show this help data");
-	console.log("");
-}
-
-events.once("modules:loaded", function() {
-
-	if (cli.config.commands[0] !== "help") return;
-	
-	if (cli.config.commands[1] === undefined) {
-		output();
-		return;
-	} 
-
-	if (cli.config.commands[1] !== "update" && cli.config.commands[1] !== "upgrade") return;
+commands
+.on(['help', undefined], output)
+.on(['help', '^(update|upgrade)'], function(done) {
 
 	console.log("");
 	console.log("-------------");
@@ -25,5 +10,16 @@ events.once("modules:loaded", function() {
 
 	output();
 
-	events.emit("command:handled");
+	done({ stop: true })
+
 });
+
+function output(done) {
+	console.log("The 'update' command updates the global cli.");
+	console.log("");
+	console.log("  update                               update the cli plugins");
+	console.log("  help update                          show this help data");
+	console.log("");
+
+	if (done) done();
+}
