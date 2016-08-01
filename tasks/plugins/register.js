@@ -30,7 +30,7 @@ cli.plugins.register = function(name, uri, options) {
 	console.log("Registering bower plugin", name, uri);
 	
 
-	bower.commands[command](name, uri, bowerrc)
+	bower.commands['register'](name, uri, bowerrc)
 	.on('error', function(err) {
 		console.log(err.toString());
 		console.log("Finished.");
