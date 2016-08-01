@@ -1,5 +1,5 @@
 {
-	"name": "interact-cli",
+	"name": "ntract-cli",
 	"license": "GPL-3",
 	"npm": {
         "bower": "*",

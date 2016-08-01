@@ -22,7 +22,7 @@ cli.plugins.unregister = function(name, options) {
 	var inquirer = require("inquirer");
 
 	var bowerrc = JSON.parse(fs.readFileSync(path.join(cli.root, ".bowerrc")).toString());
-	bowerrc.interactive = true;
+	bowerrc.ntractive = true;
 	bowerrc.cwd = cli.root;
 	bowerrc.timeout = 2000;
 
