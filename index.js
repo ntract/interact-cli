@@ -11,7 +11,19 @@ global.plugins = require("./lib/plugins"); //plugins loading interface
 global.switches = require("./lib/switches"); //switches interface
 global.commands = require("./lib/commands"); //commands interface
 
-require("./help/index");
-require("./help/update");
 global.cli = require("./lib/cli");
+
+require("./help/index");
+require("./help/compile");
+require("./help/plugins");
+require("./help/registries");
+require("./help/update");
+
+cli.plugins = cli.plugins || {};
+require("./tasks/plugins");
+
+cli.registries = cli.registries || {};
+require("./tasks/registries");
+
+
 global.cli.run();
