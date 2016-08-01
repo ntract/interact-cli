@@ -53,7 +53,7 @@ cli.plugins.unregister = function(name, options) {
 			return;
 		}
 
-		bower.commands[command](name, bowerrc)
+		bower.commands['unregister'](name, bowerrc)
 		.on('error', function(err) {
 			console.log(err.toString());
 			console.log("Finished.");
