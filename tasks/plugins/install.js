@@ -43,6 +43,7 @@ function perform(sourcePath, command, plugins, options) {
 	var bowerrc = JSON.parse(fs.readFileSync(path.join(cli.root, ".bowerrc")).toString());
 	bowerrc.interactive = options.force !== undefined ? !options.force : true;
 	bowerrc.cwd = sourcePath;
+	bowerrc.force = true;
 
 	var name = "unknown";
 	var packageJSON;
