@@ -34,7 +34,7 @@ cli.plugins.compile = function(compilePath, options) {
 		}
 
 	}, {
-		force: false
+		force: true
 	})
 
 };
