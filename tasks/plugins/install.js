@@ -51,6 +51,14 @@ function perform(sourcePath, command, plugins, options) {
 	bowerrc.interactive = options.force !== undefined ? !options.force : true;
 	bowerrc.cwd = sourcePath;
 	bowerrc.force = true;
+	bowerrc.registry = { search:[], register: "" };
+
+	var registries = new Registries();
+	var regs = registries.get();
+	_.each(regs, function(item) {
+		bowerrc.registry.search.push(item.url);
+		if (item.registerTo) bowerrc.registry.register = item.url;
+	});
 
 	var name = "unknown";
 	var packageJSON;

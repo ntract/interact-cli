@@ -1,5 +1,5 @@
 commands
-.on(['registries', 'remove'], function(done) {
+.on(['registries', 'set'], function(done) {
 	done({stop:true});
 
 	var vars = cli.config.commands.slice(2);
@@ -11,17 +11,17 @@ commands
 		return;
 	}
 
-	cli.registries.remove(name);
+	cli.registries.set(name);
 });
 
-cli.registries.remove = function(name, options) {
+cli.registries.set = function(name, options) {
 	options = options || {};
-
-	console.log("Removing registry...");
+	
+	console.log("Setting 'register to' registry...");
 
 	var registries = new Registries();
 
-	registries.remove(name);
+	registries.setRegisterTo(name);
 
 	if (options.success) {
 		options.success();

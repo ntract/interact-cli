@@ -12,20 +12,22 @@ commands
 		return;
 	}
 
-	cli.registries.add(name);
+	cli.registries.add(name, uri);
 });
 
-cli.registries.add = function(name) {
+cli.registries.add = function(name, uri, options) {
+	options = options || {};
 
-	console.log("Adding...");
+	console.log("Adding registry...");
 
-	try {
-		fs.accessSync(path.join(cli.root,".bowerrc"), fs.W_OK);
-	} catch(e) {
-		console.log("Cannot write to",path.join(cli.root,".bowerrc"),"perhaps run as sudo?");
-		return;
+	var registries = new Registries();
+
+	registries.add(name, uri);
+
+	if (options.success) {
+		options.success();
+	} else {
+		console.log("Finished.");
 	}
-
-	console.log("Sorry, add behaviour has not yet been written.");
 
 }
