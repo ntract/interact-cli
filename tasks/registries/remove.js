@@ -16,6 +16,15 @@ commands
 
 cli.registries.remove = function(name) {
 
+	console.log("Removing...");
+
+	try {
+		fs.accessSync(path.join(cli.root,".bowerrc"), fs.W_OK);
+	} catch(e) {
+		console.log("Cannot write to",path.join(cli.root,".bowerrc"),"perhaps run as sudo?");
+		return;
+	}
+
 	console.log("Sorry, remove behaviour has not yet been written.");
 
 }

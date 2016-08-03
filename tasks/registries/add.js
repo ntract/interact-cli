@@ -17,6 +17,15 @@ commands
 
 cli.registries.add = function(name) {
 
+	console.log("Adding...");
+
+	try {
+		fs.accessSync(path.join(cli.root,".bowerrc"), fs.W_OK);
+	} catch(e) {
+		console.log("Cannot write to",path.join(cli.root,".bowerrc"),"perhaps run as sudo?");
+		return;
+	}
+
 	console.log("Sorry, add behaviour has not yet been written.");
 
 }
