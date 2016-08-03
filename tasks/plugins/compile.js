@@ -15,11 +15,19 @@ cli.plugins.compile = function(compilePath, options) {
 
 	console.log("Compiling application...");
 
+	var exists = false;
 	try {
-		fs.accessSync(path.join(compilePath,"package.json"), fs.W_OK);
-	} catch(e) {
-		console.log("Cannot write to",path.join(compilePath,"package.json"),"perhaps run as sudo?");
-		return;
+		fs.statSync(path.join(sourcePath,"package.json"));
+		exists = true;
+	} catch(e) {}
+
+	if (exists) {
+		try {
+			fs.accessSync(path.join(compilePath,"package.json"), fs.W_OK);
+		} catch(e) {
+			console.log("Cannot write to",path.join(compilePath,"package.json"),"perhaps run as sudo?");
+			return;
+		}
 	}
 	
 	//perform root collate to compilePath

@@ -37,11 +37,19 @@ function perform(sourcePath, command, plugins, options) {
 
 	options = options || {};
 
+	var exists = false;
 	try {
-		fs.accessSync(path.join(sourcePath,"package.json"), fs.W_OK);
-	} catch(e) {
-		console.log("Cannot write to",path.join(sourcePath,"package.json"),"perhaps run as sudo?");
-		return;
+		fs.statSync(path.join(sourcePath,"package.json"));
+		exists = true;
+	} catch(e) {}
+
+	if (exists) {
+		try {
+			fs.accessSync(path.join(sourcePath,"package.json"), fs.W_OK);
+		} catch(e) {
+			console.log("Cannot write to",path.join(sourcePath,"package.json"),"perhaps run as sudo?");
+			return;
+		}
 	}
 
 	var bower = require("bower");
