@@ -17,9 +17,16 @@ cli.plugins.list = function(sourcePath, options) {
 
 	var pluginsTool = new Plugins(sourcePath);
 
-	var installedData = pluginsTool.getInstalledPluginData();
+	console.log("Listing installed plugins...");
 
-	console.log(installedData);
+	var installedData = pluginsTool.getInstalledPluginData();
+	installedData = _.values(installedData);
+	installedData.sort(function(a,b) {
+		return (a.name > b.name ? 1 : (a.name < b.name ? -1 : 0));
+	});
+	_.each(installedData, function(item, index) {
+		console.log((index+1)+": "+item.name);
+	});
 	
 	if (typeof options.success === "function") {
 		options.success();
