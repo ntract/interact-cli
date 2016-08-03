@@ -26,6 +26,14 @@ cli.plugins.register = function(name, uri, options) {
 	bowerrc.interactive = true;
 	bowerrc.cwd = cli.root;
 	bowerrc.timeout = 2000;
+	bowerrc.registry = { search:[], register: "" };
+
+	var registries = new Registries();
+	var regs = registries.get();
+	_.each(regs, function(item) {
+		bowerrc.registry.search.push(item.url);
+		if (item.registerTo) bowerrc.registry.register = item.url;
+	});
 
 	console.log("Registering bower plugin", name, uri);
 	
