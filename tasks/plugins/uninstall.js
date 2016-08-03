@@ -18,6 +18,15 @@ cli.plugins.uninstall = function(sourcePath, plugins, options) {
 		return;
 	}
 
+	console.log("Uninstalling...")
+
+	try {
+		fs.accessSync(path.join(sourcePath,"package.json"), fs.W_OK);
+	} catch(e) {
+		console.log("Cannot write to",path.join(sourcePath,"package.json"),"perhaps run as sudo?");
+		return;
+	}
+
 	options = options || {};
 
 	var installPath = path.join(sourcePath, cli.plugins_dirname);
@@ -26,8 +35,6 @@ cli.plugins.uninstall = function(sourcePath, plugins, options) {
 
 	var installedData = pluginsTool.getInstalledPluginData();
 	var dependants = pluginsTool.getDependantsList(installedData);
-
-	console.log("Collating dependants...")
 
 	var uninstall = {};
 	var tocheck = plugins.slice(0);

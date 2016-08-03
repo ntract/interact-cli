@@ -37,6 +37,13 @@ function perform(sourcePath, command, plugins, options) {
 
 	options = options || {};
 
+	try {
+		fs.accessSync(path.join(sourcePath,"package.json"), fs.W_OK);
+	} catch(e) {
+		console.log("Cannot write to",path.join(sourcePath,"package.json"),"perhaps run as sudo?");
+		return;
+	}
+
 	var bower = require("bower");
 	var inquirer = require("inquirer");
 
