@@ -1,3 +1,4 @@
+		cli.plugins.update(sourcePath, plugins);
 commands
 .on(['plugins', '^(install|update|upgrade)'], function(done) {
 	done({stop:true});
