@@ -1,4 +1,3 @@
-		cli.plugins.update(sourcePath, plugins);
 commands
 .on(['plugins', '^(install|update|upgrade)'], function(done) {
 	done({stop:true});
@@ -19,7 +18,7 @@ commands
 
 cli.plugins.install = function(sourcePath, plugins, options) {
 	options = options || {};
-	options.force = true;
+	options.interactive = false;
 	if (plugins.length === 0) {
 		console.log("No plugins specified.")
 		return;
@@ -29,7 +28,7 @@ cli.plugins.install = function(sourcePath, plugins, options) {
 
 cli.plugins.update = function(sourcePath, plugins, options) {
 	options = options || {};
-	options.force = true;
+	options.interactive = false;
 	perform(sourcePath, "update", plugins, options);
 }
 
@@ -57,9 +56,9 @@ function perform(sourcePath, command, plugins, options) {
 	var inquirer = require("inquirer");
 
 	var bowerrc = JSON.parse(fs.readFileSync(path.join(cli.root, ".bowerrc")).toString());
-	bowerrc.interactive = options.force !== undefined ? !options.force : true;
+	bowerrc.force = options.force !== undefined ? options.force : false;
+	bowerrc.interactive = options.interactive !== undefined ? options.interactive : true;
 	bowerrc.cwd = sourcePath;
-	bowerrc.force = true;
 	bowerrc.registry = { search:[], register: "" };
 
 	var registries = new Registries();
@@ -104,6 +103,9 @@ function perform(sourcePath, command, plugins, options) {
 	})
 	.on('log', function (log) {
 		switch (log.level) {
+		case "warn":
+			console.log(log.message);
+			break;
 		case "info":
 			break;
 		case "action":
