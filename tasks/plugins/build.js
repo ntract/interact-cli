@@ -11,7 +11,7 @@ cli.plugins.build = function(options) {
 
 function watch(options) {
 	var treecontext = new TreeContext();
-	var tree = treecontext.Tree(path.join(options.cwd, options.src), ".");
+	var tree = treecontext.Tree(Location.toAbsolute(options.src, options.cwd), ".");
 	var watchObject = tree.watchGlobs(new GlobCollection([
 		"*",
 		"**/*"
@@ -75,8 +75,8 @@ function perform (options) {
 
 	var opts = _.extend({}, options);
 
-	opts.src = path.join(options.cwd, options.src);
-	opts.build = path.join(options.cwd, options.build);
+	opts.src = Location.toAbsolute(options.src, options.cwd);
+	opts.build = Location.toAbsolute(options.build, options.cwd);
 
 	console.log("Client-Side Building", (options.dev ? "(dev)" : "(production)") + "...");
 
