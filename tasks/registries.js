@@ -6,8 +6,6 @@ events.once("modules:loaded", function() {
 
 });
 
-
-
 class Registries {
 
 	constructor(configPath) {
