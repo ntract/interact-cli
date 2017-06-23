@@ -1,17 +1,22 @@
 cli.plugins.build = function(options) {
+
 	var success = options.success;
 	options.success = function() {
 		options.success = null;
 		if (options.dev) watch(options);
 		if (typeof success === "function") success();
 	};
+
 	perform(options);
+
 	
 }
 
 function watch(options) {
+
 	var treecontext = new TreeContext();
 	var tree = treecontext.Tree(Location.toAbsolute(options.src, options.cwd), ".");
+
 	var watchObject = tree.watchGlobs(new GlobCollection([
 		"*",
 		"**/*"
@@ -37,10 +42,13 @@ function watch(options) {
     	}
         perform(options);
     });
+
     watchObject.start();
+
 }
 
 function perform (options) {
+
 	options = options || {};
 
 	var tasks = prepareTasks(options);
@@ -114,9 +122,11 @@ function perform (options) {
 	}
 
 	runTasks();
+
 }
 
 function prepareTasks(options) {
+
 	var tasks = [];
 	for (var i = 0, l = options.tasks.length; i < l; i++) {
 		var task = _.deepExtend({}, options.tasks[i]);
@@ -124,4 +134,5 @@ function prepareTasks(options) {
 		tasks.push(task);
 	}
 	return tasks;
+	
 }

@@ -1,5 +1,6 @@
 commands
 .on(['plugins', '^(install|update|upgrade)'], function(done) {
+
 	done({stop:true});
 
 	var plugins = cli.config.commands.slice(2);
@@ -17,6 +18,7 @@ commands
 
 
 cli.plugins.install = function(sourcePath, plugins, options) {
+
 	options = options || {};
 	options.interactive = false;
 	if (plugins.length === 0) {
@@ -24,14 +26,17 @@ cli.plugins.install = function(sourcePath, plugins, options) {
 		return;
 	}
 	perform(sourcePath, "install", plugins, options);
-}
+
+};
 
 cli.plugins.update = function(sourcePath, plugins, options) {
+
 	options = options || {};
 	options.interactive = false;
-	perform(sourcePath, "update", plugins, options);
-}
 
+	perform(sourcePath, "update", plugins, options);
+
+};
 
 function perform(sourcePath, command, plugins, options) {
 
@@ -150,7 +155,5 @@ function perform(sourcePath, command, plugins, options) {
 
 		}});
 	});
-
-
 	
 }

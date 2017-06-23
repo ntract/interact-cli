@@ -1,7 +1,9 @@
 'use strict';
 
 events.once("modules:loaded", function() {
+
 	FileSystem.mkdir(path.join(cli.root, "data"),{norel:true});
+
 });
 
 
@@ -9,11 +11,14 @@ events.once("modules:loaded", function() {
 class Registries {
 
 	constructor(configPath) {
+
 		this.registriesPath = path.join(configPath || cli.config_path);
-		this.registriesFilePath = path.join(this.registriesPath, "registries.json");		
+		this.registriesFilePath = path.join(this.registriesPath, "registries.json");	
+
 	}
 
 	checkAccess() {
+
 		try {
 			fs.statSync(this.registriesFilePath);
 		} catch(e) {
@@ -30,9 +35,11 @@ class Registries {
 			console.log("Cannot write to",this.registriesFilePath,"perhaps run as sudo?");
 			return false;
 		}
+
 	}
 
 	get() {
+
 		var registries;
 		try {
 			registries = JSON.parse(fs.readFileSync(this.registriesFilePath).toString());
@@ -53,15 +60,19 @@ class Registries {
 			registries = predefined.concat(registries);
 		}
 		return registries;
+
 	}
 
 	set(registries) {
+
 		if (!this.checkAccess()) return false;
 		fs.writeFileSync(this.registriesFilePath, JSON.stringify(registries, null, "    "));
 		return true;
+
 	}
 
 	add(name, url) {
+
 		name = name.toLowerCase();
 		var registries = this.get();
 		var reg = _.findWhere(registries, {name:name});
@@ -75,9 +86,11 @@ class Registries {
 		});
 		console.log("Registry added \""+name+"\" \""+url+"\"");
 		return this.set(registries);
+
 	}
 
 	setRegisterTo(name) {
+
 		name = name.toLowerCase();
 		var registries = this.get();
 		var reg = _.findWhere(registries, {name:name});
@@ -91,9 +104,11 @@ class Registries {
 		});
 		console.log("Registry \""+name+"\" set as 'register to' location");
 		this.set(registries);
+
 	}
 
 	getRegisterTo() {
+
 		var registries = this.get();
 		var reg = _.findWhere(registries, {registerTo:true});
 		if (reg === undefined) {
@@ -101,9 +116,11 @@ class Registries {
 			return false;
 		}
 		return reg;
+
 	}
 
 	remove(name) {
+
 		name = name.toLowerCase();
 		var registries = this.get();
 		var reg = _.findWhere(registries, {name:name});
@@ -116,6 +133,7 @@ class Registries {
 		});
 		console.log("Registry removed \""+name+"\"");
 		return this.set(registries);
+		
 	}
 	
 }

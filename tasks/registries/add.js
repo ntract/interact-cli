@@ -1,5 +1,6 @@
 commands
 .on(['registries', 'add'], function(done) {
+
 	done({stop:true});
 
 	var vars = cli.config.commands.slice(2);
@@ -13,9 +14,11 @@ commands
 	}
 
 	cli.registries.add(name, uri);
+
 });
 
 cli.registries.add = function(name, uri, options) {
+
 	options = options || {};
 
 	console.log("Adding registry...");
@@ -30,4 +33,4 @@ cli.registries.add = function(name, uri, options) {
 		console.log("Finished.");
 	}
 
-}
+};

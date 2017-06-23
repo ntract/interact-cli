@@ -1,5 +1,6 @@
 commands
 .on(['registries', 'remove'], function(done) {
+
 	done({stop:true});
 
 	var vars = cli.config.commands.slice(2);
@@ -12,9 +13,11 @@ commands
 	}
 
 	cli.registries.remove(name);
+
 });
 
 cli.registries.remove = function(name, options) {
+
 	options = options || {};
 
 	console.log("Removing registry...");
@@ -29,4 +32,4 @@ cli.registries.remove = function(name, options) {
 		console.log("Finished.");
 	}
 
-}
+};

@@ -1,5 +1,6 @@
 commands
 .on(['plugins', '^register'], function(done) {
+
 	done({stop:true});
 
 	var vars = cli.config.commands.slice(2);
@@ -13,6 +14,7 @@ commands
 	}
 
 	cli.plugins.register(name, uri);
+
 });
 
 cli.plugins.register = function(name, uri, options) {
@@ -71,6 +73,4 @@ cli.plugins.register = function(name, uri, options) {
 
 	});
 
-
-	
 }

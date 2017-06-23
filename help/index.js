@@ -1,5 +1,6 @@
 commands
 .on(['help', undefined], function(done) {
+
 	console.log("");
 	console.log("--------------");
 	console.log("ALL HELP PAGES");
@@ -7,6 +8,7 @@ commands
 	console.log("");
 
 	done();
+	
 })
 .unhandled(function() {
 

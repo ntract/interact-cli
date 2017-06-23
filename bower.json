@@ -2,8 +2,15 @@
 	"name": "ntract-cli",
 	"license": "GPL-3",
 	"npm": {
+        "buildkit-globber": "*",
+        "fs-glob": "*",
+        "underscore": "*",
+        "underscore-deep-extend": "*",
+        "npm": "*",
+        "semver": "*",
         "bower": "*",
-        "inquirer": "*"
+        "inquirer": "*",
+        "osenv": "*"
     },
     "global": true,
     "main": [

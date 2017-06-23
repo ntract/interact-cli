@@ -25,5 +25,4 @@ require("./tasks/plugins");
 cli.registries = cli.registries || {};
 require("./tasks/registries");
 
-
 global.cli.run();

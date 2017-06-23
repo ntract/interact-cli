@@ -1,5 +1,6 @@
 commands
 .on(['registries', 'set'], function(done) {
+
 	done({stop:true});
 
 	var vars = cli.config.commands.slice(2);
@@ -12,9 +13,11 @@ commands
 	}
 
 	cli.registries.set(name);
+
 });
 
 cli.registries.set = function(name, options) {
+
 	options = options || {};
 	
 	console.log("Setting 'register to' registry...");
@@ -29,4 +32,4 @@ cli.registries.set = function(name, options) {
 		console.log("Finished.");
 	}
 
-}
+};

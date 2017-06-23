@@ -1,5 +1,6 @@
 commands
 .on(['plugins', 'search'], function(done) {
+
 	done({stop:true});
 
 	var vars = cli.config.commands.slice(2);
@@ -12,9 +13,11 @@ commands
 	}
 
 	cli.plugins.search(name);
+
 });
 
 cli.plugins.search = function(name, options) {
+	
 	options = options || {};
 
 	var bower = require("bower");

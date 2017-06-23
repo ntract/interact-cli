@@ -1,5 +1,6 @@
 commands
 .on(['plugins', '^(uninstall|remove)'], function(done) {
+
 	done({stop:true});
 
 	var plugins = cli.config.commands.slice(2);
@@ -7,10 +8,11 @@ commands
 	var sourcePath = path.join(cli.cwd);
 
 	perform(sourcePath, "uninstall", plugins);
+
 });
 
-
 cli.plugins.uninstall = function(sourcePath, plugins, options) {
+
 	options = options || {};
 	options.force = true;
 	if (plugins.length === 0) {
@@ -154,4 +156,5 @@ cli.plugins.uninstall = function(sourcePath, plugins, options) {
 		}
 		
 	}
+	
 };

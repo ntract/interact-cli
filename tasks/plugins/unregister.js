@@ -1,5 +1,6 @@
 commands
 .on(['plugins', 'unregister'], function(done) {
+
 	done({stop:true});
 
 	var vars = cli.config.commands.slice(2);
@@ -12,6 +13,7 @@ commands
 	}
 
 	cli.plugins.unregister(name);
+
 });
 
 cli.plugins.unregister = function(name, options) {
@@ -94,7 +96,5 @@ cli.plugins.unregister = function(name, options) {
 
 		});
 	}
-
-
 	
 };

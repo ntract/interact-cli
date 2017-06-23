@@ -1,13 +1,16 @@
 commands
 .on(['plugins', 'list'], function(done) {
+
 	done({stop:true});
 
 	var sourcePath = path.join(cli.cwd);
 
 	cli.plugins.list(sourcePath);
+
 });
 
 cli.plugins.list = function(sourcePath, options) {
+	
 	options = options || {};
 	options.force = true;
 

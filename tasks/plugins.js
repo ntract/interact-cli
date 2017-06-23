@@ -3,7 +3,9 @@
 class Plugins {
 
 	constructor(installPath) {
+
 		this.pluginsPath = path.join(installPath || cli.cwd, cli.plugins_dirname);
+
 	}
 
 	getInstalledPlugins() {
@@ -24,6 +26,7 @@ class Plugins {
 		}
 
 		return installed;
+
 	}
 
 	getInstalledPluginData() {
@@ -44,9 +47,11 @@ class Plugins {
 		}
 
 		return installed;
+
 	}
 
 	getDependantsList(installedPluginData) {
+
 		installedPluginData = installedPluginData || this.getInstalledPluginData();
 
 		var dependants = {};
@@ -68,9 +73,11 @@ class Plugins {
 		}
 
 		return dependants;
+
 	}
 
 	removeOrphanedPlugins() {
+
 		var installedPluginData = this.getInstalledPluginData();
 		var dependantsList = this.getDependantsList(installedPluginData);
 
@@ -91,11 +98,14 @@ global.Plugins = Plugins;
 class Plugin {
 
 	constructor(name) {
+
 		this.name = name;
 		this.pluginJSON = null;
 		this.pluginsPath = path.join(cli.cwd, cli.plugins_dirname);
 		this.pluginPath = path.join(this.pluginsPath, this.name);
+
 		this.load();
+
 	}
 
 	load() {
@@ -105,9 +115,11 @@ class Plugin {
 		} catch(e) {
 			console.log("Plugin not found", this.name);
 		}
+
 	}
 
 	static splitVariable(pluginVariable) {
+
 		var name, version;
 		var atIndex = pluginVariable.indexOf("@");
 		if (atIndex > -1) {
@@ -119,6 +131,7 @@ class Plugin {
 		}
 
 		return { name, version };
+		
 	}
 
 }

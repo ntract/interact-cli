@@ -1,11 +1,14 @@
 commands
 .on(['registries', 'list'], function(done) {
+
 	done({stop:true});
 
 	cli.registries.list();
+
 });
 
 cli.registries.list = function(options) {
+
 	options = options || {};
 
 	var registries = new Registries();
@@ -29,5 +32,4 @@ cli.registries.list = function(options) {
 		console.log("Finished.");
 	}
 
-
-}
+};

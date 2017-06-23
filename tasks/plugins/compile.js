@@ -11,6 +11,7 @@ commands
 
 cli.plugins = cli.plugins || {};
 cli.plugins.compile = function(compilePath, options) {
+
 	options = options || {};
 
 	console.log("Compiling application...");
@@ -50,7 +51,7 @@ cli.plugins.compile = function(compilePath, options) {
 
 	}, {
 		force: true
-	})
+	});
 
 };
 
