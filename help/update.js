@@ -15,6 +15,7 @@ commands
 });
 
 function output(done) {
+
 	console.log("The 'update' command updates the global cli.");
 	console.log("");
 	console.log("  update                               update the cli plugins");
@@ -22,4 +23,5 @@ function output(done) {
 	console.log("");
 
 	if (done) done();
+	
 }

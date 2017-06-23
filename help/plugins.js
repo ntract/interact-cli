@@ -1,6 +1,7 @@
 commands
 .on(["help", undefined], output)
 .on(["help", "plugins", undefined], function(done) {
+
 	console.log("");
 	console.log("--------------");
 	console.log("Help - plugins");
@@ -10,9 +11,11 @@ commands
 	output();
 
 	done();
+
 });
 
 function output(done) {
+
 	console.log("The 'plugins' commands help manage plugin development and installation.");
 	console.log("");
 	console.log("  plugins list                         list installed plugins");
@@ -27,4 +30,5 @@ function output(done) {
 	console.log("");
 
 	if (done) done();
+	
 }

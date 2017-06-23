@@ -1,6 +1,7 @@
 commands
 .on(["help", undefined], output)
 .on(["help", "registries", undefined], function(done) {
+
 	console.log("");
 	console.log("-----------------");
 	console.log("Help - registries");
@@ -10,10 +11,12 @@ commands
 	output();
 
 	done();
+
 });
 
 
 function output(done) {
+
 	console.log("The 'registries' commands help manage plugin sources.");
 	console.log("");
 	console.log("  registries list                      list configured registries");
@@ -24,4 +27,5 @@ function output(done) {
 	console.log("");
 
 	if (done) done();
+	
 }
